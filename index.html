@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano 6 Meses · Cutting & Definição</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07090d;
+    --bg2: #0d1117;
+    --surface: #111620;
+    --surface2: #161c28;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.1);
+    --neon: #c8ff00;
+    --neon2: #ff5c35;
+    --neon3: #00d4ff;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --muted2: #94a3b8;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --blue: #60a5fa;
+    --p1: #00d4ff;
+    --p2: #c8ff00;
+    --p3: #ff5c35;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 2px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,255,0,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,212,255,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 70%, rgba(255,92,53,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .hero-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--neon);
+    border: 1px solid rgba(200,255,0,0.25);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    display: inline-block;
+    animation: fadeDown 0.8s ease both;
+    background: rgba(200,255,0,0.04);
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(56px, 12vw, 130px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    animation: fadeUp 0.9s ease 0.1s both;
+  }
+
+  .hero h1 .line1 { color: #fff; display: block; }
+  .hero h1 .line2 { color: var(--neon); display: block; -webkit-text-stroke: 0px; }
+  .hero h1 .line3 {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted2);
+    margin-top: 24px;
+    letter-spacing: 1px;
+    animation: fadeUp 0.9s ease 0.25s both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 0;
+    margin-top: 52px;
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    animation: fadeUp 0.9s ease 0.35s both;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    padding: 20px 32px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat .v {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--neon);
+    letter-spacing: 1px;
+    display: block;
+  }
+
+  .hero-stat .l {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  .scroll-hint span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--neon), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7,9,13,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--neon);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--neon); }
+
+  /* ─── SECTIONS ─── */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--neon);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--neon);
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .section-title em {
+    color: var(--neon);
+    font-style: normal;
+  }
+
+  /* ─── TIMELINE PHASES ─── */
+  .timeline {
+    position: relative;
+    margin-bottom: 80px;
+  }
+
+  .timeline-track {
+    display: flex;
+    height: 6px;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: var(--surface2);
+  }
+
+  .timeline-seg {
+    height: 100%;
+    position: relative;
+  }
+
+  .ts1 { background: var(--p1); width: 16.67%; }
+  .ts2 { background: var(--p2); width: 50%; }
+  .ts3 { background: var(--p3); width: 33.33%; }
+
+  .timeline-labels {
+    display: flex;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+  }
+
+  .timeline-labels span { flex: 1; }
+  .timeline-labels .tl-end { text-align: right; }
+
+  /* ─── PHASE CARDS ─── */
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .phases { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .phase-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border2);
+  }
+
+  .phase-card.p1:hover { box-shadow: 0 20px 60px rgba(0,212,255,0.08); }
+  .phase-card.p2:hover { box-shadow: 0 20px 60px rgba(200,255,0,0.08); }
+  .phase-card.p3:hover { box-shadow: 0 20px 60px rgba(255,92,53,0.08); }
+
+  .phase-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .phase-card.p1::after { background: var(--p1); }
+  .phase-card.p2::after { background: var(--p2); }
+  .phase-card.p3::after { background: var(--p3); }
+
+  .phase-num-bg {
+    position: absolute;
+    bottom: -10px; right: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 100px;
+    font-weight: 900;
+    opacity: 0.04;
+    color: #fff;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .phase-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .p1 .phase-badge { background: rgba(0,212,255,0.12); color: var(--p1); }
+  .p2 .phase-badge { background: rgba(200,255,0,0.12); color: var(--p2); }
+  .p3 .phase-badge { background: rgba(255,92,53,0.12); color: var(--p3); }
+
+  .phase-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .phase-months {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .phase-rows { border-top: 1px solid var(--border); }
+
+  .phase-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .phase-row:last-child { border-bottom: none; }
+  .phase-row .k { color: var(--muted); font-size: 12px; }
+  .phase-row .v { font-weight: 600; }
+
+  .kcal-big {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .p1 .kcal-big { color: var(--p1); }
+  .p2 .kcal-big { color: var(--p2); }
+  .p3 .kcal-big { color: var(--p3); }
+
+  /* ─── DETAIL TABLE ─── */
+  .table-section { background: var(--bg2); }
+
+  .table-outer {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .table-scroll { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 780px;
+  }
+
+  thead th {
+    background: var(--surface2);
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+  tbody td { padding: 14px 18px; vertical-align: middle; }
+
+  tr.phase-sep td {
+    padding: 8px 18px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tr.sp1 td { background: rgba(0,212,255,0.04); color: var(--p1); }
+  tr.sp2 td { background: rgba(200,255,0,0.04); color: var(--p2); }
+  tr.sp3 td { background: rgba(255,92,53,0.04); color: var(--p3); }
+
+  .m-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    display: block;
+  }
+
+  .m-sub { font-size: 11px; color: var(--muted); }
+
+  .kcal-cell {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  .pill-p { background: rgba(74,222,128,0.1); color: var(--green); }
+  .pill-c { background: rgba(96,165,250,0.1); color: var(--blue); }
+  .pill-g { background: rgba(251,146,60,0.1); color: var(--orange); }
+
+  .def-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  .def-low { background: rgba(0,212,255,0.1); color: var(--p1); }
+  .def-med { background: rgba(200,255,0,0.1); color: var(--p2); }
+  .def-hi { background: rgba(255,92,53,0.1); color: var(--p3); }
+
+  .weight-val {
+    font-weight: 700;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── TRAINING ─── */
+  .train-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .train-grid { grid-template-columns: 1fr; }
+  }
+
+  .train-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    transition: border-color 0.3s;
+  }
+
+  .train-card:hover { border-color: var(--border2); }
+
+  .train-icon-wrap {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .ti-blue { background: rgba(0,212,255,0.1); }
+  .ti-red { background: rgba(255,92,53,0.1); }
+
+  .train-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .train-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+
+  .train-rows { border-top: 1px solid var(--border); }
+
+  .train-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    gap: 12px;
+  }
+
+  .train-row:last-child { border-bottom: none; }
+  .train-row .k { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .train-row .v { font-weight: 500; text-align: right; }
+
+  /* ─── MACROS REFERENCE ─── */
+  .macros-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .macros-grid { grid-template-columns: 1fr; }
+  }
+
+  .macro-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .macro-card:hover { transform: translateY(-3px); }
+
+  .macro-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .macro-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    line-height: 1;
+    display: block;
+  }
+
+  .mc-p .macro-val { color: var(--green); }
+  .mc-c .macro-val { color: var(--blue); }
+  .mc-g .macro-val { color: var(--orange); }
+
+  .macro-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin: 8px 0 12px;
+  }
+
+  .macro-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .macro-rule {
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+
+  .mc-p .macro-rule { background: rgba(74,222,128,0.08); color: var(--green); }
+  .mc-c .macro-rule { background: rgba(96,165,250,0.08); color: var(--blue); }
+  .mc-g .macro-rule { background: rgba(251,146,60,0.08); color: var(--orange); }
+
+  /* ─── TIPS ─── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 700px) {
+    .tips-grid { grid-template-columns: 1fr; }
+  }
+
+  .tip-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .tip-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+  .tip-icon { font-size: 22px; margin-bottom: 14px; display: block; }
+
+  .tip-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .tip-text { font-size: 13px; color: var(--muted2); line-height: 1.65; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  footer strong { color: var(--neon); font-weight: 700; }
+
+  /* ─── DIVIDERS ─── */
+  .full-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── PROGRESS VIS ─── */
+  .progress-vis {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 48px;
+  }
+
+  .pv-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .pv-row:last-child { margin-bottom: 0; }
+
+  .pv-label {
+    width: 80px;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .pv-bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--surface2);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .pv-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+  }
+
+  .pv-val {
+    width: 80px;
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.4; transform: scaleY(0.7); transform-origin: top; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── TRACKER ─── */
+  .tracker-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 640px) { .tracker-top { grid-template-columns: 1fr; } }
+
+  .tracker-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .tracker-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .start-date-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  input[type="date"] {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+
+  input[type="date"]:focus { border-color: var(--neon); }
+
+  .btn-primary {
+    background: var(--neon);
+    color: #07090d;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--neon); color: var(--neon); }
+
+  .phase-countdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 640px) { .phase-countdown { grid-template-columns: 1fr; } }
+
+  .countdown-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .countdown-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .countdown-card.cc1::after { background: var(--p1); }
+  .countdown-card.cc2::after { background: var(--p2); }
+  .countdown-card.cc3::after { background: var(--p3); }
+
+  .cc-phase {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cc1 .cc-phase { color: var(--p1); }
+  .cc2 .cc-phase { color: var(--p2); }
+  .cc3 .cc-phase { color: var(--p3); }
+
+  .cc-days {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1;
+    display: block;
+  }
+
+  .cc1 .cc-days { color: var(--p1); }
+  .cc2 .cc-days { color: var(--p2); }
+  .cc3 .cc-days { color: var(--p3); }
+
+  .cc-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .cc-bar-track {
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+
+  .cc-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.8s ease;
+  }
+
+  .cc1 .cc-bar-fill { background: var(--p1); }
+  .cc2 .cc-bar-fill { background: var(--p2); }
+  .cc3 .cc-bar-fill { background: var(--p3); }
+
+  /* Calendar */
+  .calendar-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+
+  .cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .cal-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cal-nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .cal-nav button {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    width: 32px; height: 32px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .cal-nav button:hover { border-color: var(--neon); color: var(--neon); }
+
+  .cal-month-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--muted2);
+    min-width: 120px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .cal-dow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    padding: 4px 0;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    border: 1px solid transparent;
+    position: relative;
+    user-select: none;
+  }
+
+  .cal-day:hover:not(.cal-empty):not(.cal-future) {
+    border-color: var(--border2);
+    background: var(--surface2);
+  }
+
+  .cal-day.cal-empty { cursor: default; }
+  .cal-day.cal-future { color: var(--muted); cursor: default; opacity: 0.4; }
+
+  .cal-day.cal-today {
+    border-color: rgba(200,255,0,0.4);
+    color: var(--neon);
+    font-weight: 700;
+  }
+
+  .cal-day.cal-done {
+    background: rgba(200,255,0,0.12);
+    color: var(--neon);
+    border-color: rgba(200,255,0,0.3);
+  }
+
+  .cal-day.cal-done::after {
+    content: '✓';
+    position: absolute;
+    bottom: 1px; right: 3px;
+    font-size: 8px;
+    color: var(--neon);
+    opacity: 0.7;
+  }
+
+  .cal-day.cal-miss {
+    color: var(--muted);
+  }
+
+  .cal-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .leg {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--muted2);
+  }
+
+  .leg-box {
+    width: 14px; height: 14px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+
+  .leg-box.lb-done { background: rgba(200,255,0,0.12); border-color: rgba(200,255,0,0.3); }
+  .leg-box.lb-today { border-color: rgba(200,255,0,0.5); background: transparent; }
+  .leg-box.lb-miss { background: var(--surface2); border-color: var(--border); }
+
+  .cal-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .cal-stat-item .csv { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; color: var(--neon); }
+  .cal-stat-item .csl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Weight tracker */
+  .weight-tracker {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .weight-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  input[type="number"] {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 10px 16px;
+    width: 120px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input[type="number"]:focus { border-color: var(--neon); }
+
+  .weight-log {
+    max-height: 220px;
+    overflow-y: auto;
+  }
+
+  .weight-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .weight-entry:last-child { border-bottom: none; }
+
+  .we-date { color: var(--muted); font-size: 12px; }
+
+  .we-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .we-delta {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+  .we-delta.neg { background: rgba(74,222,128,0.1); color: var(--green); }
+  .we-delta.pos { background: rgba(248,113,113,0.1); color: #f87171; }
+  .we-delta.zero { color: var(--muted); }
+
+  .we-del {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s;
+  }
+
+  .we-del:hover { color: #f87171; }
+
+  /* ─── IIFYM ─── */
+  .iifym-intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 24px;
+    border-left: 3px solid var(--neon);
+  }
+
+  .iifym-intro p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--muted2);
+    margin-bottom: 12px;
+  }
+
+  .iifym-intro p:last-child { margin-bottom: 0; }
+  .iifym-intro strong { color: var(--text); }
+  .iifym-intro em { color: var(--neon); font-style: normal; font-weight: 600; }
+
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 640px) { .formula-grid { grid-template-columns: 1fr; } }
+
+  .formula-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    transition: border-color 0.3s;
+  }
+
+  .formula-card:hover { border-color: var(--border2); }
+
+  .formula-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: rgba(200,255,0,0.1);
+    color: var(--neon);
+    border-radius: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+
+  .formula-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .formula-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+
+  .formula-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--neon);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .formula-example {
+    font-size: 12px;
+    color: var(--muted2);
+    line-height: 1.6;
+  }
+
+  .formula-example strong { color: var(--text); }
+
+  .iifym-calc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    border-left: 3px solid var(--p3);
+  }
+
+  .calc-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .calc-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+  .calc-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 600px) { .calc-inputs { grid-template-columns: 1fr; } }
+
+  .calc-field label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .calc-field input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .calc-field input:focus { border-color: var(--neon); }
+
+  .calc-result {
+    display: none;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 20px;
+  }
+
+  .calc-result.show { display: block; }
+
+  .calc-result-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) { .calc-result-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .cr-item .cr-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    display: block;
+    line-height: 1;
+  }
+
+  .cr-item .cr-lbl {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .cr-kcal { color: var(--neon); }
+  .cr-prot { color: var(--green); }
+  .cr-carb { color: var(--blue); }
+  .cr-fat  { color: var(--orange); }
+
+  /* ─── GLOW LINE ─── */
+  .glow-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    opacity: 0.3;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">⚡ Cutting Plan</div>
+    <ul class="nav-links">
+      <li><a href="#fases">Fases</a></li>
+      <li><a href="#tabela">Tabela</a></li>
+      <li><a href="#treino">Treino</a></li>
+      <li><a href="#macros">Macros</a></li>
+      <li><a href="#dicas">Dicas</a></li>
+      <li><a href="#tracker">Tracker</a></li>
+      <li><a href="#iifym">IIFYM</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-tag">Plano Personalizado · 6 Meses</div>
+
+  <h1>
+    <span class="line1">Recomposição</span>
+    <span class="line2">Cutting</span>
+    <span class="line3">&amp; Definição</span>
+  </h1>
+
+  <p class="hero-sub">Dieta Progressiva · Musculação · Cardio · Resultados Reais</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="v">89 kg</span>
+      <span class="l">Peso Atual</span>
+    </div>
+    <div class="hero-stat">
+      <span class="v">183 cm</span>
+      <span class="l">Altura</span>
+    </div>
+    <div class="hero-stat">
+      <span class="v">~2.950</span>
+      <span class="l">TDEE kcal</span>
+    </div>
+    <div class="hero-stat">
+      <span class="v">4–5×</span>
+      <span class="l">Treinos/sem</span>
+    </div>
+    <div class="hero-stat">
+      <span class="v">~82 kg</span>
+      <span class="l">Meta Final</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ══════ FASES ══════ -->
+<section id="fases">
+  <div class="section-header reveal">
+    <div class="section-label">Estrutura do Plano</div>
+    <div class="section-title">3 <em>Fases</em> Progressivas</div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-track">
+      <div class="timeline-seg ts1"></div>
+      <div class="timeline-seg ts2"></div>
+      <div class="timeline-seg ts3"></div>
+    </div>
+    <div class="timeline-labels">
+      <span>Mês 1</span>
+      <span style="text-align:center">Mês 2 — 4</span>
+      <span class="tl-end">Mês 5 — 6</span>
+    </div>
+  </div>
+
+  <div class="phases">
+    <div class="phase-card p1 reveal">
+      <div class="phase-num-bg">1</div>
+      <span class="phase-badge">Fase 1</span>
+      <div class="phase-name">Adaptação</div>
+      <div class="phase-months">Mês 1 · Déficit Moderado</div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="k">Calorias/dia</span><span class="v kcal-big">2.650</span></div>
+        <div class="phase-row"><span class="k">Proteína</span><span class="v">200g <small style="color:var(--muted)">(30%)</small></span></div>
+        <div class="phase-row"><span class="k">Carboidrato</span><span class="v">265g <small style="color:var(--muted)">(40%)</small></span></div>
+        <div class="phase-row"><span class="k">Gordura</span><span class="v">74g <small style="color:var(--muted)">(25%)</small></span></div>
+        <div class="phase-row"><span class="k">Déficit</span><span class="v">~300 kcal</span></div>
+        <div class="phase-row"><span class="k">Meta de Peso</span><span class="v">~88,5 kg</span></div>
+      </div>
+    </div>
+
+    <div class="phase-card p2 reveal" style="transition-delay:0.1s">
+      <div class="phase-num-bg">2</div>
+      <span class="phase-badge">Fase 2</span>
+      <div class="phase-name">Cutting Principal</div>
+      <div class="phase-months">Meses 2–4 · Déficit Progressivo</div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="k">Calorias/dia</span><span class="v kcal-big">2.450→2.350</span></div>
+        <div class="phase-row"><span class="k">Proteína</span><span class="v">210–215g <small style="color:var(--muted)">(34–37%)</small></span></div>
+        <div class="phase-row"><span class="k">Carboidrato</span><span class="v">240–210g <small style="color:var(--muted)">(36–39%)</small></span></div>
+        <div class="phase-row"><span class="k">Gordura</span><span class="v">65–68g <small style="color:var(--muted)">(25%)</small></span></div>
+        <div class="phase-row"><span class="k">Déficit</span><span class="v">~500–600 kcal</span></div>
+        <div class="phase-row"><span class="k">Meta de Peso</span><span class="v">~85,5 kg</span></div>
+      </div>
+    </div>
+
+    <div class="phase-card p3 reveal" style="transition-delay:0.2s">
+      <div class="phase-num-bg">3</div>
+      <span class="phase-badge">Fase 3</span>
+      <div class="phase-name">Intensificação</div>
+      <div class="phase-months">Meses 5–6 · Déficit Alto</div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="k">Calorias/dia</span><span class="v kcal-big">2.200→2.100</span></div>
+        <div class="phase-row"><span class="k">Proteína</span><span class="v">217–220g <small style="color:var(--muted)">(39–42%)</small></span></div>
+        <div class="phase-row"><span class="k">Carboidrato</span><span class="v">165–185g <small style="color:var(--muted)">(31–34%)</small></span></div>
+        <div class="phase-row"><span class="k">Gordura</span><span class="v">58–62g <small style="color:var(--muted)">(25%)</small></span></div>
+        <div class="phase-row"><span class="k">Déficit</span><span class="v">~750–850 kcal</span></div>
+        <div class="phase-row"><span class="k">Meta de Peso</span><span class="v">~82 kg</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══════ TABELA ══════ -->
+<section id="tabela" class="table-section" style="max-width:100%;padding:80px 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div class="section-header reveal">
+      <div class="section-label">Detalhamento Mensal</div>
+      <div class="section-title">Tabela <em>Completa</em></div>
+    </div>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;" class="reveal">
+    <div class="table-outer">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Mês</th>
+              <th>Kcal / Dia</th>
+              <th>Proteína</th>
+              <th>Carboidrato</th>
+              <th>Gordura</th>
+              <th>Déficit</th>
+              <th>Cardio</th>
+              <th>Musculação</th>
+              <th>Peso Esperado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="phase-sep sp1">
+              <td colspan="9">▸ FASE 1 — ADAPTAÇÃO E CALIBRAÇÃO</td>
+            </tr>
+            <tr>
+              <td><span class="m-badge">MÊS 1</span><span class="m-sub">Adaptação</span></td>
+              <td><span class="kcal-cell" style="color:var(--p1)">2.650</span></td>
+              <td><span class="pill pill-p">200g</span> <span style="color:var(--muted);font-size:11px">30%</span></td>
+              <td><span class="pill pill-c">265g</span> <span style="color:var(--muted);font-size:11px">40%</span></td>
+              <td><span class="pill pill-g">74g</span> <span style="color:var(--muted);font-size:11px">25%</span></td>
+              <td><span class="def-pill def-low">–300 kcal</span></td>
+              <td style="font-size:12px;">40 min<br><span style="color:var(--muted)">Zone 2</span></td>
+              <td style="font-size:12px;">4×/sem<br><span style="color:var(--muted)">3–4 séries · 10–12 reps</span></td>
+              <td><span class="weight-val" style="color:var(--p1)">~88,5 kg</span></td>
+            </tr>
+
+            <tr class="phase-sep sp2">
+              <td colspan="9">▸ FASE 2 — CUTTING PRINCIPAL</td>
+            </tr>
+            <tr>
+              <td><span class="m-badge">MÊS 2</span><span class="m-sub">Cutting</span></td>
+              <td><span class="kcal-cell" style="color:var(--p2)">2.450</span></td>
+              <td><span class="pill pill-p">210g</span> <span style="color:var(--muted);font-size:11px">34%</span></td>
+              <td><span class="pill pill-c">240g</span> <span style="color:var(--muted);font-size:11px">39%</span></td>
+              <td><span class="pill pill-g">68g</span> <span style="color:var(--muted);font-size:11px">25%</span></td>
+              <td><span class="def-pill def-med">–500 kcal</span></td>
+              <td style="font-size:12px;">40 min<br><span style="color:var(--muted)">Moderado</span></td>
+              <td style="font-size:12px;">4–5×/sem<br><span style="color:var(--muted)">4 séries · 8–12 reps</span></td>
+              <td><span class="weight-val" style="color:var(--p2)">~87,5 kg</span></td>
+            </tr>
+            <tr>
+              <td><span class="m-badge">MÊS 3</span><span class="m-sub">Cutting</span></td>
+              <td><span class="kcal-cell" style="color:var(--p2)">2.400</span></td>
+              <td><span class="pill pill-p">212g</span> <span style="color:var(--muted);font-size:11px">35%</span></td>
+              <td><span class="pill pill-c">225g</span> <span style="color:var(--muted);font-size:11px">38%</span></td>
+              <td><span class="pill pill-g">67g</span> <span style="color:var(--muted);font-size:11px">25%</span></td>
+              <td><span class="def-pill def-med">–550 kcal</span></td>
+              <td style="font-size:12px;">40 min<br><span style="color:var(--muted)">Misto + 1× HIIT</span></td>
+              <td style="font-size:12px;">4–5×/sem<br><span style="color:var(--muted)">4 séries · 8–12 reps</span></td>
+              <td><span class="weight-val" style="color:var(--p2)">~86,5 kg</span></td>
+            </tr>
+            <tr>
+              <td><span class="m-badge">MÊS 4</span><span class="m-sub">Cutting</span></td>
+              <td><span class="kcal-cell" style="color:var(--p2)">2.350</span></td>
+              <td><span class="pill pill-p">215g</span> <span style="color:var(--muted);font-size:11px">37%</span></td>
+              <td><span class="pill pill-c">210g</span> <span style="color:var(--muted);font-size:11px">36%</span></td>
+              <td><span class="pill pill-g">65g</span> <span style="color:var(--muted);font-size:11px">25%</span></td>
+              <td><span class="def-pill def-med">–600 kcal</span></td>
+              <td style="font-size:12px;">40–45 min<br><span style="color:var(--muted)">Intenso</span></td>
+              <td style="font-size:12px;">5×/sem<br><span style="color:var(--muted)">4 séries · 8–12 reps · RIR 1–2</span></td>
+              <td><span class="weight-val" style="color:var(--p2)">~85,5 kg</span></td>
+            </tr>
+
+            <tr class="phase-sep sp3">
+              <td colspan="9">▸ FASE 3 — INTENSIFICAÇÃO E DEFINIÇÃO FINAL</td>
+            </tr>
+            <tr>
+              <td><span class="m-badge">MÊS 5</span><span class="m-sub">Intensif.</span></td>
+              <td><span class="kcal-cell" style="color:var(--p3)">2.200</span></td>
+              <td><span class="pill pill-p">217g</span> <span style="color:var(--muted);font-size:11px">39%</span></td>
+              <td><span class="pill pill-c">185g</span> <span style="color:var(--muted);font-size:11px">34%</span></td>
+              <td><span class="pill pill-g">62g</span> <span style="color:var(--muted);font-size:11px">25%</span></td>
+              <td><span class="def-pill def-hi">–750 kcal</span></td>
+              <td style="font-size:12px;">45 min<br><span style="color:var(--muted)">Zone 2 + 2× HIIT</span></td>
+              <td style="font-size:12px;">5×/sem<br><span style="color:var(--muted)">4–5 séries · 8–10 reps · RIR 0–1</span></td>
+              <td><span class="weight-val" style="color:var(--p3)">~84 kg</span></td>
+            </tr>
+            <tr>
+              <td><span class="m-badge">MÊS 6</span><span class="m-sub">Peak</span></td>
+              <td><span class="kcal-cell" style="color:var(--p3)">2.100</span></td>
+              <td><span class="pill pill-p">220g</span> <span style="color:var(--muted);font-size:11px">42%</span></td>
+              <td><span class="pill pill-c">165g</span> <span style="color:var(--muted);font-size:11px">31%</span></td>
+              <td><span class="pill pill-g">58g</span> <span style="color:var(--muted);font-size:11px">25%</span></td>
+              <td><span class="def-pill def-hi">–850 kcal</span></td>
+              <td style="font-size:12px;">45 min<br><span style="color:var(--muted)">Zone 2 + 2× HIIT</span></td>
+              <td style="font-size:12px;">5×/sem<br><span style="color:var(--muted)">4–5 séries · 8–10 reps · RIR 0</span></td>
+              <td><span class="weight-val" style="color:var(--p3)">~82 kg</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══════ TREINO ══════ -->
+<section id="treino">
+  <div class="section-header reveal">
+    <div class="section-label">Diretrizes de Treino</div>
+    <div class="section-title">Musculação <em>&amp;</em> Cardio</div>
+  </div>
+
+  <div class="train-grid">
+    <div class="train-card reveal">
+      <div class="train-icon-wrap ti-blue">💪</div>
+      <div class="train-title">Musculação</div>
+      <div class="train-sub">Volume e intensidade progressivos</div>
+      <div class="train-rows">
+        <div class="train-row"><span class="k">Meses 1–2</span><span class="v">3–4 séries · 10–12 reps · RIR 2–3</span></div>
+        <div class="train-row"><span class="k">Meses 3–4</span><span class="v">4 séries · 8–12 reps · RIR 1–2</span></div>
+        <div class="train-row"><span class="k">Meses 5–6</span><span class="v">4–5 séries · 8–10 reps · RIR 0–1</span></div>
+        <div class="train-row"><span class="k">Divisão sugerida</span><span class="v">PPL ou Upper/Lower 4–5× semana</span></div>
+        <div class="train-row"><span class="k">Progressão de carga</span><span class="v">Manter ou progredir levemente</span></div>
+        <div class="train-row"><span class="k">Foco em cutting</span><span class="v">Preservar força e volume muscular</span></div>
+      </div>
+    </div>
+
+    <div class="train-card reveal" style="transition-delay:0.1s">
+      <div class="train-icon-wrap ti-red">🔥</div>
+      <div class="train-title">Cardio</div>
+      <div class="train-sub">Estrutura e progressão de intensidade</div>
+      <div class="train-rows">
+        <div class="train-row"><span class="k">Meses 1–2</span><span class="v">40 min · Zone 2 (60–70% FC máx)</span></div>
+        <div class="train-row"><span class="k">Mês 3</span><span class="v">40 min · Zone 2 + 1× HIIT/sem</span></div>
+        <div class="train-row"><span class="k">Mês 4</span><span class="v">45 min · Zone 2 + 1× HIIT/sem</span></div>
+        <div class="train-row"><span class="k">Meses 5–6</span><span class="v">45 min · Zone 2 + 2× HIIT/sem</span></div>
+        <div class="train-row"><span class="k">Tipo preferencial</span><span class="v">Esteira inclinada, bicicleta, elíptico</span></div>
+        <div class="train-row"><span class="k">Timing ideal</span><span class="v">Pós-musculação ou manhã em jejum</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══════ MACROS ══════ -->
+<section id="macros">
+  <div class="section-header reveal">
+    <div class="section-label">Referência Nutricional</div>
+    <div class="section-title">Distribuição de <em>Macros</em></div>
+  </div>
+
+  <div class="macros-grid">
+    <div class="macro-card mc-p reveal">
+      <span class="macro-icon">🥩</span>
+      <span class="macro-val">4</span>
+      <div class="macro-name">Proteína · kcal/g</div>
+      <div class="macro-desc">Principal nutriente do cutting. Preserva massa muscular durante o déficit calórico.</div>
+      <div class="macro-rule">2,2–2,5g por kg de peso</div>
+    </div>
+
+    <div class="macro-card mc-c reveal" style="transition-delay:0.1s">
+      <span class="macro-icon">🍚</span>
+      <span class="macro-val">4</span>
+      <div class="macro-name">Carboidrato · kcal/g</div>
+      <div class="macro-desc">Principal alavanca do déficit. Reduz progressivamente ao longo das fases.</div>
+      <div class="macro-rule">Diminui mês a mês</div>
+    </div>
+
+    <div class="macro-card mc-g reveal" style="transition-delay:0.2s">
+      <span class="macro-icon">🥑</span>
+      <span class="macro-val">9</span>
+      <div class="macro-name">Gordura · kcal/g</div>
+      <div class="macro-desc">Mantida estável em ~25%. Essencial para saúde hormonal e saciedade.</div>
+      <div class="macro-rule">Estável em ~25% das kcal</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══════ DICAS ══════ -->
+<section id="dicas">
+  <div class="section-header reveal">
+    <div class="section-label">Protocolos Essenciais</div>
+    <div class="section-title">Pontos <em>Importantes</em></div>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card reveal">
+      <span class="tip-icon">⚖️</span>
+      <div class="tip-title">Ajuste por Resultado</div>
+      <div class="tip-text">Se o peso não cair 0,5–1 kg/mês nas fases 1–2, ou 0,8–1,2 kg/mês na fase 3, reduza 100–150 kcal dos carboidratos. Se cair além do esperado, adicione 100 kcal nos carbos.</div>
+    </div>
+
+    <div class="tip-card reveal" style="transition-delay:0.1s">
+      <span class="tip-icon">🔁</span>
+      <div class="tip-title">Refeed Semanal</div>
+      <div class="tip-text">A partir do Mês 3, inclua 1 dia/semana com +300–400 kcal vindos exclusivamente de carboidratos. Ajuda na resposta hormonal (leptina), melhora a performance e sustentabilidade psicológica do cutting.</div>
+    </div>
+
+    <div class="tip-card reveal" style="transition-delay:0.2s">
+      <span class="tip-icon">💧</span>
+      <div class="tip-title">Hidratação</div>
+      <div class="tip-text">Mínimo 3–4L de água por dia. Fundamental para metabolismo acelerado, performance nos treinos e aparência muscular durante o processo de cutting.</div>
+    </div>
+
+    <div class="tip-card reveal" style="transition-delay:0.3s">
+      <span class="tip-icon">😴</span>
+      <div class="tip-title">Sono e Recuperação</div>
+      <div class="tip-text">7–9h de sono por noite. Durante o cutting, a recuperação é mais lenta. O GH (hormônio do crescimento) é liberado principalmente no sono profundo, essencial para preservar a massa magra.</div>
+    </div>
+
+    <div class="tip-card reveal" style="transition-delay:0.4s">
+      <span class="tip-icon">📏</span>
+      <div class="tip-title">Medições Semanais</div>
+      <div class="tip-text">Pese-se sempre no mesmo horário (manhã, em jejum, após urinar). Use também fotos e medidas de cintura para acompanhar o progresso real além da balança.</div>
+    </div>
+
+    <div class="tip-card reveal" style="transition-delay:0.5s">
+      <span class="tip-icon">🩺</span>
+      <div class="tip-title">Acompanhamento Profissional</div>
+      <div class="tip-text">Este plano é um guia baseado nos seus dados. Recomenda-se revisão mensal com nutricionista e educador físico para ajustes individualizados e monitoramento de saúde.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ TRACKER ══════ -->
+<div class="full-divider"></div>
+<section id="tracker">
+  <div class="section-header reveal">
+    <div class="section-label">Acompanhamento Pessoal</div>
+    <div class="section-title">Tracker <em>de Progresso</em></div>
+  </div>
+
+  <!-- Data de início + info geral -->
+  <div class="tracker-top reveal">
+    <div class="tracker-card">
+      <div class="tracker-label">📅 Data de Início do Plano</div>
+      <div class="start-date-wrap">
+        <input type="date" id="startDateInput">
+        <button class="btn-primary" onclick="setStartDate()">Salvar Data</button>
+        <button class="btn-ghost" onclick="clearStartDate()">Limpar</button>
+      </div>
+      <div id="startDateInfo" style="margin-top:16px;font-size:13px;color:var(--muted2);line-height:1.7;display:none;"></div>
+    </div>
+
+    <div class="tracker-card">
+      <div class="tracker-label">📊 Resumo Geral</div>
+      <div id="generalSummary" style="font-size:13px;color:var(--muted);line-height:1.8;">
+        <span style="color:var(--muted)">Defina uma data de início para ver seu progresso geral.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contagem por fase -->
+  <div class="phase-countdown reveal" id="phaseCountdown" style="display:none;">
+    <div class="countdown-card cc1">
+      <div class="cc-phase">Fase 1 · Adaptação</div>
+      <span class="cc-days" id="cc1days">—</span>
+      <div class="cc-label" id="cc1label">Mês 1</div>
+      <div class="cc-bar-track"><div class="cc-bar-fill" id="cc1bar" style="width:0%"></div></div>
+    </div>
+    <div class="countdown-card cc2">
+      <div class="cc-phase">Fase 2 · Cutting Principal</div>
+      <span class="cc-days" id="cc2days">—</span>
+      <div class="cc-label" id="cc2label">Meses 2–4</div>
+      <div class="cc-bar-track"><div class="cc-bar-fill" id="cc2bar" style="width:0%"></div></div>
+    </div>
+    <div class="countdown-card cc3">
+      <div class="cc-phase">Fase 3 · Intensificação</div>
+      <span class="cc-days" id="cc3days">—</span>
+      <div class="cc-label" id="cc3label">Meses 5–6</div>
+      <div class="cc-bar-track"><div class="cc-bar-fill" id="cc3bar" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- Calendário -->
+  <div class="calendar-wrap reveal">
+    <div class="cal-header">
+      <div>
+        <div class="tracker-label" style="margin-bottom:4px">📆 Calendário — Marque seus dias</div>
+        <div class="cal-title" id="calMonthTitle">—</div>
+      </div>
+      <div class="cal-nav">
+        <button onclick="calPrev()">‹</button>
+        <span class="cal-month-label" id="calNavLabel">—</span>
+        <button onclick="calNext()">›</button>
+        <button class="btn-ghost" onclick="calGoToday()" style="margin-left:4px;padding:6px 12px;font-size:12px;">Hoje</button>
+      </div>
+    </div>
+
+    <div class="cal-grid" id="calGrid"></div>
+
+    <div class="cal-legend">
+      <div class="leg"><div class="leg-box lb-done"></div> Dia completo ✓</div>
+      <div class="leg"><div class="leg-box lb-today"></div> Hoje</div>
+      <div class="leg"><div class="leg-box lb-miss"></div> Dia passado</div>
+    </div>
+
+    <div class="cal-stats">
+      <div class="cal-stat-item"><div class="csv" id="calDone">0</div><div class="csl">Dias Concluídos</div></div>
+      <div class="cal-stat-item"><div class="csv" id="calStreak">0</div><div class="csl">Sequência Atual</div></div>
+      <div class="cal-stat-item"><div class="csv" id="calTotal">0</div><div class="csl">Dias no Plano</div></div>
+      <div class="cal-stat-item"><div class="csv" id="calPct">0%</div><div class="csl">Taxa de Adesão</div></div>
+    </div>
+  </div>
+
+  <!-- Peso -->
+  <div class="weight-tracker reveal">
+    <div class="tracker-label">⚖️ Registro de Peso</div>
+    <div class="weight-input-row">
+      <input type="number" id="weightInput" placeholder="89.0" step="0.1" min="40" max="200">
+      <span style="color:var(--muted);font-size:14px;">kg</span>
+      <input type="date" id="weightDate">
+      <button class="btn-primary" onclick="addWeight()">Registrar</button>
+    </div>
+    <div class="weight-log" id="weightLog">
+      <div style="color:var(--muted);font-size:13px;">Nenhum peso registrado ainda.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ IIFYM ══════ -->
+<div class="full-divider"></div>
+<section id="iifym">
+  <div class="section-header reveal">
+    <div class="section-label">Dieta Flexível · IIFYM</div>
+    <div class="section-title">Como Calcular <em>seus Macros</em></div>
+  </div>
+
+  <div class="iifym-intro reveal">
+    <p><strong>IIFYM significa "If It Fits Your Macros"</strong> — ou seja, você pode comer qualquer alimento, desde que os macronutrientes do dia (proteína, carboidrato e gordura) caibam nas metas estabelecidas. <em>A fonte do alimento importa para saúde, mas o que define a composição corporal é o total de calorias e macros no dia.</em></p>
+    <p>O segredo está em <strong>contar gramas, não adivinhá-los</strong>. Use uma balança de cozinha e um app como o FatSecret ou Cronometer para registrar tudo que come. Com o tempo, você desenvolve "visão de macros" e não precisa mais pesar tudo.</p>
+  </div>
+
+  <div class="formula-grid reveal">
+    <div class="formula-card">
+      <div class="formula-step">1</div>
+      <div class="formula-title">Calcule seu TDEE</div>
+      <div class="formula-sub">Total de calorias que você gasta por dia (manutenção)</div>
+      <div class="formula-box">
+        TDEE = TMB × Fator de Atividade<br>
+        TMB = 88,4 + (13,4 × peso kg) + (4,8 × altura cm) − (5,7 × idade)
+      </div>
+      <div class="formula-example">
+        <strong>Fatores de atividade:</strong><br>
+        Sedentário (0–1×): × 1,2<br>
+        Leve (1–3×/sem): × 1,375<br>
+        Moderado (3–5×/sem): × 1,55 ← <em style="color:var(--neon)">seu caso</em><br>
+        Intenso (6–7×/sem): × 1,725
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-step">2</div>
+      <div class="formula-title">Defina as Calorias</div>
+      <div class="formula-sub">Aplique o déficit calórico conforme a fase do plano</div>
+      <div class="formula-box">
+        Calorias Alvo = TDEE − Déficit<br><br>
+        Fase 1: −300 kcal → 2.650<br>
+        Fase 2: −500 a −600 kcal → 2.350–2.450<br>
+        Fase 3: −750 a −850 kcal → 2.100–2.200
+      </div>
+      <div class="formula-example">
+        <strong>Regra de ouro:</strong> déficit de 500 kcal/dia = perda de ~0,5 kg/semana (≈ 3.500 kcal = 500g de gordura).
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-step">3</div>
+      <div class="formula-title">Proteína Primeiro</div>
+      <div class="formula-sub">É o macro mais importante — calcule antes dos outros</div>
+      <div class="formula-box">
+        Proteína = 2,2 a 2,5g × peso (kg)<br>
+        Calorias da proteína = gramas × 4
+      </div>
+      <div class="formula-example">
+        <strong>Exemplo (89 kg):</strong><br>
+        89 × 2,25g = <strong>~200g de proteína</strong><br>
+        200g × 4 = 800 kcal vêm da proteína.<br><br>
+        Por que alta? Proteína preserva massa muscular no déficit e tem efeito saciante maior.
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-step">4</div>
+      <div class="formula-title">Gordura &amp; Carboidrato</div>
+      <div class="formula-sub">Distribua as calorias restantes entre os dois</div>
+      <div class="formula-box">
+        Kcal restantes = Meta − Kcal da proteína<br>
+        Gordura = ~25% das kcal totais ÷ 9<br>
+        Carboidrato = kcal restantes ÷ 4
+      </div>
+      <div class="formula-example">
+        <strong>Exemplo (2.650 kcal, 200g prot):</strong><br>
+        Gordura: 2.650 × 25% = 663 ÷ 9 = <strong>~74g</strong><br>
+        Kcal restantes: 2.650 − 800 − 663 = 1.187<br>
+        Carboidrato: 1.187 ÷ 4 = <strong>~265g</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculadora rápida -->
+  <div class="iifym-calc reveal">
+    <div class="calc-title">⚡ Calculadora Rápida de Macros</div>
+    <div class="calc-sub">Informe seus dados e veja seus macros personalizados para qualquer déficit</div>
+    <div class="calc-inputs">
+      <div class="calc-field">
+        <label>Peso atual (kg)</label>
+        <input type="number" id="calcWeight" placeholder="89" value="89" step="0.5">
+      </div>
+      <div class="calc-field">
+        <label>Calorias alvo (kcal)</label>
+        <input type="number" id="calcKcal" placeholder="2650" value="2650" step="50">
+      </div>
+      <div class="calc-field">
+        <label>Proteína (g/kg de peso)</label>
+        <input type="number" id="calcProtFactor" placeholder="2.25" value="2.25" step="0.05">
+      </div>
+    </div>
+    <button class="btn-primary" onclick="calcMacros()">Calcular Macros</button>
+
+    <div class="calc-result" id="calcResult">
+      <div style="font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Resultado</div>
+      <div class="calc-result-grid">
+        <div class="cr-item"><span class="cr-val cr-kcal" id="crKcal">—</span><div class="cr-lbl">Kcal / Dia</div></div>
+        <div class="cr-item"><span class="cr-val cr-prot" id="crProt">—</span><div class="cr-lbl">Proteína (g)</div></div>
+        <div class="cr-item"><span class="cr-val cr-carb" id="crCarb">—</span><div class="cr-lbl">Carboidrato (g)</div></div>
+        <div class="cr-item"><span class="cr-val cr-fat" id="crFat">—</span><div class="cr-lbl">Gordura (g)</div></div>
+      </div>
+      <div id="crBreakdown" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted2);line-height:1.9;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<div class="glow-line"></div>
+<footer>
+  <p style="margin-bottom:8px">Plano de Recomposição Corporal · 6 Meses · Revisão Mensal Recomendada</p>
+  <p>Gerado com <strong>Claude AI</strong> · Consulte sempre um profissional de saúde</p>
+</footer>
+
+<!-- ══════ SCROLL REVEAL JS ══════ -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- ══════ TRACKER JS ══════ -->
+<script>
+  // ── Storage keys ──
+  const KEY_START   = 'cuttingStartDate';
+  const KEY_CHECKS  = 'cuttingChecks';   // JSON array of 'YYYY-MM-DD'
+  const KEY_WEIGHTS = 'cuttingWeights';  // JSON array of {date, weight}
+
+  // ── Helpers ──
+  function today() { return fmtDate(new Date()); }
+  function fmtDate(d) {
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function parseLocal(str) {
+    const [y,m,d] = str.split('-').map(Number);
+    return new Date(y, m-1, d);
+  }
+  function diffDays(a, b) {
+    return Math.floor((b - a) / 86400000);
+  }
+  function ptDate(str) {
+    const [y,m,d] = str.split('-');
+    const months = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    return `${d} ${months[parseInt(m)-1]} ${y}`;
+  }
+
+  function loadChecks()  { try { return JSON.parse(localStorage.getItem(KEY_CHECKS)  || '[]'); } catch(e){ return []; } }
+  function loadWeights() { try { return JSON.parse(localStorage.getItem(KEY_WEIGHTS) || '[]'); } catch(e){ return []; } }
+  function saveChecks(c)  { localStorage.setItem(KEY_CHECKS, JSON.stringify(c)); }
+  function saveWeights(w) { localStorage.setItem(KEY_WEIGHTS, JSON.stringify(w)); }
+  function loadStart()   { return localStorage.getItem(KEY_START) || null; }
+
+  // ── Phase info ──
+  // Phase 1: days 0–30 (month 1)
+  // Phase 2: days 31–120 (months 2–4)
+  // Phase 3: days 121–181 (months 5–6)
+  const PHASES = [
+    { name:'Fase 1', start:0,   end:30,  dur:31  },
+    { name:'Fase 2', start:31,  end:120, dur:90  },
+    { name:'Fase 3', start:121, end:181, dur:61  },
+  ];
+  const TOTAL_DAYS = 182;
+
+  // ── Set start date ──
+  function setStartDate() {
+    const val = document.getElementById('startDateInput').value;
+    if (!val) { alert('Selecione uma data primeiro!'); return; }
+    localStorage.setItem(KEY_START, val);
+    refreshTracker();
+  }
+
+  function clearStartDate() {
+    if (!confirm('Limpar data de início e todo o progresso do tracker?')) return;
+    localStorage.removeItem(KEY_START);
+    refreshTracker();
+  }
+
+  function refreshTracker() {
+    const start = loadStart();
+    const todayStr = today();
+    const startInput = document.getElementById('startDateInput');
+
+    if (start) {
+      startInput.value = start;
+      const startD = parseLocal(start);
+      const todayD = parseLocal(todayStr);
+      const elapsed = diffDays(startD, todayD);
+      const remaining = Math.max(0, TOTAL_DAYS - elapsed - 1);
+      const endDate = new Date(startD); endDate.setDate(endDate.getDate() + TOTAL_DAYS - 1);
+
+      // Phase of current day
+      let currentPhase = null;
+      for (const p of PHASES) {
+        if (elapsed >= p.start && elapsed <= p.end) { currentPhase = p; break; }
+      }
+
+      const info = document.getElementById('startDateInfo');
+      info.style.display = 'block';
+      info.innerHTML = `
+        <span style="color:var(--neon);font-weight:700;">✓ Plano iniciado em ${ptDate(start)}</span><br>
+        📅 Dia <strong style="color:var(--text)">${Math.max(0,elapsed)+1}</strong> de ${TOTAL_DAYS} · 
+        ${remaining > 0 ? `Faltam <strong style="color:var(--text)">${remaining}</strong> dias para o fim` : '<strong style="color:var(--neon)">🎉 Plano concluído!</strong>'}<br>
+        🏁 Data de conclusão: <strong style="color:var(--text)">${ptDate(fmtDate(endDate))}</strong><br>
+        ${currentPhase ? `🔥 Fase atual: <strong style="color:var(--neon)">${currentPhase.name}</strong>` : (elapsed >= TOTAL_DAYS ? '🏆 Plano finalizado!' : '')}
+      `;
+
+      // Summary
+      const checks = loadChecks();
+      const weights = loadWeights();
+      const pastDays = Math.min(elapsed + 1, TOTAL_DAYS);
+      const adherence = pastDays > 0 ? Math.round((checks.length / pastDays) * 100) : 0;
+      const lastWeight = weights.length > 0 ? weights[weights.length-1].weight : '—';
+      const firstWeight = weights.length > 0 ? weights[0].weight : 89;
+      const weightDiff = weights.length > 1 ? (weights[weights.length-1].weight - firstWeight).toFixed(1) : null;
+
+      document.getElementById('generalSummary').innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div><span style="color:var(--neon);font-weight:700;">${pastDays}</span><br><span>Dias decorridos</span></div>
+          <div><span style="color:var(--neon);font-weight:700;">${remaining}</span><br><span>Dias restantes</span></div>
+          <div><span style="color:var(--neon);font-weight:700;">${adherence}%</span><br><span>Adesão geral</span></div>
+          <div><span style="color:var(--neon);font-weight:700;">${lastWeight}${typeof lastWeight === 'number' ? ' kg':''}
+            ${weightDiff !== null ? `<small style="color:${weightDiff<=0?'var(--green)':'#f87171'};font-size:11px"> (${weightDiff>0?'+':''}${weightDiff}kg)</small>` : ''}
+          </span><br><span>Último peso</span></div>
+        </div>
+      `;
+
+      // Countdown cards
+      document.getElementById('phaseCountdown').style.display = 'grid';
+      PHASES.forEach((p, i) => {
+        const idx = i + 1;
+        const phaseElapsed = Math.max(0, Math.min(elapsed - p.start, p.dur));
+        const phaseRemaining = Math.max(0, p.end - elapsed);
+        const pct = Math.min(100, Math.round((phaseElapsed / p.dur) * 100));
+        const daysEl = document.getElementById(`cc${idx}days`);
+        const labelEl = document.getElementById(`cc${idx}label`);
+        const barEl = document.getElementById(`cc${idx}bar`);
+
+        if (elapsed < p.start) {
+          daysEl.textContent = p.dur;
+          labelEl.textContent = 'dias · não iniciado';
+        } else if (elapsed > p.end) {
+          daysEl.textContent = '✓';
+          labelEl.textContent = 'Fase concluída!';
+        } else {
+          daysEl.textContent = phaseRemaining;
+          labelEl.textContent = `dia${phaseRemaining !== 1 ? 's':''}  faltando`;
+        }
+        barEl.style.width = pct + '%';
+      });
+
+    } else {
+      document.getElementById('startDateInfo').style.display = 'none';
+      document.getElementById('phaseCountdown').style.display = 'none';
+      document.getElementById('generalSummary').innerHTML = '<span style="color:var(--muted)">Defina uma data de início para ver seu progresso geral.</span>';
+    }
+
+    renderCalendar();
+    renderWeightLog();
+  }
+
+  // ── Calendar ──
+  let calYear, calMonth;
+  function calInit() {
+    const now = new Date();
+    calYear = now.getFullYear();
+    calMonth = now.getMonth();
+  }
+
+  function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
+  function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
+  function calGoToday() { const n = new Date(); calYear = n.getFullYear(); calMonth = n.getMonth(); renderCalendar(); }
+
+  function renderCalendar() {
+    const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const shortNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+    document.getElementById('calMonthTitle').textContent = monthNames[calMonth] + ' ' + calYear;
+    document.getElementById('calNavLabel').textContent = monthNames[calMonth].substring(0,3) + ' ' + calYear;
+
+    const grid = document.getElementById('calGrid');
+    grid.innerHTML = '';
+
+    // Headers
+    shortNames.forEach(d => {
+      const el = document.createElement('div');
+      el.className = 'cal-dow';
+      el.textContent = d;
+      grid.appendChild(el);
+    });
+
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+    const todayStr = today();
+    const checks = loadChecks();
+    const start = loadStart();
+
+    // Empty cells
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day cal-empty';
+      grid.appendChild(el);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const el = document.createElement('div');
+      el.className = 'cal-day';
+      el.textContent = d;
+
+      const isFuture = dateStr > todayStr;
+      const isToday = dateStr === todayStr;
+      const isDone = checks.includes(dateStr);
+
+      // Check if date is within plan
+      let inPlan = false;
+      if (start) {
+        const startD = parseLocal(start);
+        const dateD = parseLocal(dateStr);
+        const diff = diffDays(startD, dateD);
+        if (diff >= 0 && diff < TOTAL_DAYS) inPlan = true;
+      }
+
+      if (isFuture) { el.classList.add('cal-future'); }
+      else if (isToday) { el.classList.add('cal-today'); }
+      else if (!inPlan) { el.classList.add('cal-miss'); }
+
+      if (isDone) { el.classList.add('cal-done'); el.classList.remove('cal-future','cal-miss'); }
+
+      if (!isFuture) {
+        el.title = isDone ? `${dateStr} — ✓ Concluído (clique para desmarcar)` : `${dateStr} — clique para marcar como concluído`;
+        el.addEventListener('click', () => toggleDay(dateStr));
+      }
+
+      grid.appendChild(el);
+    }
+
+    updateCalStats();
+  }
+
+  function toggleDay(dateStr) {
+    const checks = loadChecks();
+    const idx = checks.indexOf(dateStr);
+    if (idx >= 0) checks.splice(idx, 1);
+    else checks.push(dateStr);
+    saveChecks(checks);
+    renderCalendar();
+    refreshTracker();
+  }
+
+  function updateCalStats() {
+    const checks = loadChecks();
+    const start = loadStart();
+    let totalDays = 0, streak = 0;
+
+    if (start) {
+      const startD = parseLocal(start);
+      const todayD = parseLocal(today());
+      const elapsed = diffDays(startD, todayD);
+      totalDays = Math.min(elapsed + 1, TOTAL_DAYS);
+
+      // streak from today backwards
+      let d = new Date(todayD);
+      while (true) {
+        const ds = fmtDate(d);
+        if (!checks.includes(ds)) break;
+        streak++;
+        d.setDate(d.getDate() - 1);
+        if (diffDays(startD, d) < 0) break;
+      }
+    }
+
+    const done = checks.length;
+    const pct = totalDays > 0 ? Math.round((done / totalDays) * 100) : 0;
+
+    document.getElementById('calDone').textContent = done;
+    document.getElementById('calStreak').textContent = streak;
+    document.getElementById('calTotal').textContent = totalDays;
+    document.getElementById('calPct').textContent = pct + '%';
+  }
+
+  // ── Weight tracker ──
+  function addWeight() {
+    const wInput = document.getElementById('weightInput');
+    const dInput = document.getElementById('weightDate');
+    const w = parseFloat(wInput.value);
+    const d = dInput.value || today();
+    if (isNaN(w) || w < 30 || w > 250) { alert('Insira um peso válido entre 30 e 250 kg.'); return; }
+    const weights = loadWeights();
+    // Remove existing entry for same date
+    const filtered = weights.filter(e => e.date !== d);
+    filtered.push({ date: d, weight: w });
+    filtered.sort((a, b) => a.date.localeCompare(b.date));
+    saveWeights(filtered);
+    wInput.value = '';
+    renderWeightLog();
+    refreshTracker();
+  }
+
+  function deleteWeight(date) {
+    const weights = loadWeights().filter(e => e.date !== date);
+    saveWeights(weights);
+    renderWeightLog();
+    refreshTracker();
+  }
+
+  function renderWeightLog() {
+    const weights = loadWeights();
+    const log = document.getElementById('weightLog');
+    if (weights.length === 0) {
+      log.innerHTML = '<div style="color:var(--muted);font-size:13px;">Nenhum peso registrado ainda.</div>';
+      return;
+    }
+    const sorted = [...weights].reverse();
+    log.innerHTML = sorted.map((e, i) => {
+      const prev = sorted[i + 1];
+      let deltaHTML = '';
+      if (prev) {
+        const diff = (e.weight - prev.weight).toFixed(1);
+        const cls = diff < 0 ? 'neg' : diff > 0 ? 'pos' : 'zero';
+        deltaHTML = `<span class="we-delta ${cls}">${diff > 0 ? '+' : ''}${diff} kg</span>`;
+      }
+      return `
+        <div class="weight-entry">
+          <span class="we-date">${ptDate(e.date)}</span>
+          <span class="we-val" style="color:var(--neon)">${e.weight} <small style="font-size:12px;color:var(--muted)">kg</small></span>
+          ${deltaHTML}
+          <button class="we-del" onclick="deleteWeight('${e.date}')" title="Remover">✕</button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ── IIFYM Calculator ──
+  function calcMacros() {
+    const weight = parseFloat(document.getElementById('calcWeight').value) || 89;
+    const kcal   = parseFloat(document.getElementById('calcKcal').value)   || 2650;
+    const factor = parseFloat(document.getElementById('calcProtFactor').value) || 2.25;
+
+    const prot = Math.round(weight * factor);
+    const protKcal = prot * 4;
+    const fatKcal  = Math.round(kcal * 0.25);
+    const fat      = Math.round(fatKcal / 9);
+    const carbKcal = Math.max(0, kcal - protKcal - fatKcal);
+    const carb     = Math.round(carbKcal / 4);
+
+    const protPct = Math.round((protKcal / kcal) * 100);
+    const fatPct  = Math.round((fatKcal  / kcal) * 100);
+    const carbPct = Math.round((carbKcal / kcal) * 100);
+
+    document.getElementById('crKcal').textContent = kcal.toLocaleString('pt-BR');
+    document.getElementById('crProt').textContent = prot + 'g';
+    document.getElementById('crCarb').textContent = carb + 'g';
+    document.getElementById('crFat').textContent  = fat  + 'g';
+
+    document.getElementById('crBreakdown').innerHTML = `
+      <strong style="color:var(--text)">Distribuição calórica:</strong><br>
+      🥩 Proteína: ${prot}g × 4 = <strong>${protKcal} kcal</strong> (${protPct}%) &nbsp;|&nbsp;
+      🍚 Carboidrato: ${carb}g × 4 = <strong>${carbKcal} kcal</strong> (${carbPct}%) &nbsp;|&nbsp;
+      🥑 Gordura: ${fat}g × 9 = <strong>${fatKcal} kcal</strong> (${fatPct}%)
+    `;
+
+    document.getElementById('calcResult').classList.add('show');
+  }
+
+  // ── Init ──
+  calInit();
+  // Set default date inputs to today
+  document.getElementById('weightDate').value = today();
+  const saved = loadStart();
+  if (saved) document.getElementById('startDateInput').value = saved;
+  refreshTracker();
+</script>
+
+
+</body>
+</html>
